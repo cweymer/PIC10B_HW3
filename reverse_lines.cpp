@@ -1,9 +1,10 @@
-//
-//  main.cpp
-//  reverse_lines
-//
-//  Created by Charlotte Weymer on 2/3/23.
-//
+/*
+PIC 10B Homework 3, reverse_lines.cpp
+Author: Charlotte Weymer
+UID: 005760636
+Discussion Section: 1C
+Date: 02/03/2023
+*/
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,8 +14,8 @@ using namespace std;
 int main() {
     ifstream input;
     ofstream output;
-    string word;
-    vector<string> line;
+    string line;
+    vector<string> all_lines;
     string filename_i;
     string filename_o;
     cout << "Please enter the input data file name: ";
@@ -30,18 +31,17 @@ int main() {
         return 1;
     } //accounts for file open failure
     input.open(filename_i); //opens input file
-    while (input >> word)//reading file phase
+    while (getline(input, line))//reading file phase
         {
-            line.push_back(word);//stores words as a string into a vector
+            all_lines.push_back(line);//stores words as a string into a vector
         }
         input.close(); //close input file
-    reverse(line.begin(), line.end()); //reverses order of words
+    reverse(all_lines.begin(), all_lines.end()); //reverses order of words
     output.open(filename_o); //open output file
     for (int i = 0; i < line.size(); i++)
     {
-        output << line[i] << " "; //print words with spaces between them
+        output << all_lines[i] << endl; //print words with spaces between them
     }
-    cout << endl;
     output.close();
     return 0;
 }
